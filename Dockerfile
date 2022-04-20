@@ -1,10 +1,11 @@
-FROM node:lts-alpine
-ENV NODE_ENV=production
-WORKDIR /usr/src/app
-COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
-RUN npm install --production --silent && mv node_modules ../
-COPY . .
+FROM node:16.6.2
+
+ADD . /blog-app/
+
+WORKDIR /blog-app/
+
+RUN npm install --registry https://registry.npm.taobao.org
+
 EXPOSE 30001
-RUN chown -R node /usr/src/app
-USER node
-CMD ["npm", "start"]
+
+CMD ["npm", "run","start"]
