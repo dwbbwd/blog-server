@@ -1,8 +1,8 @@
-FROM node:16.6.2
+FROM node:14.17.3-slim
 
-ADD . /blog-app/
+ADD . /app/
 
-WORKDIR /blog-app/
+WORKDIR /app
 
 RUN npm install --registry https://registry.npm.taobao.org
 
